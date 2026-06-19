@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A distraction-free, high-utility Study Planner and Curriculum Tracker for Math & IELTS. Directly links topics to external resources with built-in tools.">
+    <title>CorePrep | Math & Language Study Dashboard</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- FontAwesome for clean iconography -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <!-- Sidebar Header / Brand -->
+            <div class="brand">
+                <i class="fa-solid fa-graduation-cap brand-icon"></i>
+                <span class="brand-name">CorePrep</span>
+            </div>
+
+            <!-- Profile & Metrics Card -->
+            <div class="metrics-card">
+                <div class="metrics-row">
+                    <div class="metric-item">
+                        <span class="metric-value" id="math-progress">0%</span>
+                        <span class="metric-label">Math Complete</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-value" id="english-progress">0%</span>
+                        <span class="metric-label">IELTS Complete</span>
+                    </div>
+                </div>
+                <div class="streak-container">
+                    <i class="fa-solid fa-fire streak-icon"></i>
+                    <span class="streak-text"><strong id="streak-days">0</strong> Day Study Streak</span>
+                </div>
+            </div>
+
+            <!-- Daily Tracker Input Logger -->
+            <div class="daily-logger">
+                <h3 class="logger-title"><i class="fa-solid fa-calendar-check"></i> Daily Log (Today)</h3>
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label for="hours-input">Hours Studied</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="hours-input" min="0" max="24" step="0.1" value="0">
+                            <span class="input-unit">hrs</span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="problems-input">Problems Solved</label>
+                        <div class="input-with-unit">
+                            <input type="number" id="problems-input" min="0" max="999" value="0">
+                            <span class="input-unit">qs</span>
+                        </div>
+                    </div>
+                </div>
+                <button id="save-daily-log" class="btn btn-secondary btn-sm"><i class="fa-solid fa-floppy-disk"></i> Save Today's Log</button>
+            </div>
+
+            <!-- Curriculum Navigation Menu -->
+            <nav class="curriculum-nav">
+                <div class="nav-section-title">Study Tracks</div>
+                <div class="curriculum-sections" id="syllabus-list">
+                    <!-- Loaded dynamically via app.js -->
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="main-workspace">
+            <!-- Dynamic Active Study Panel -->
+            <section class="study-panel" id="active-panel" style="display: none;">
+                <!-- Study Panel Header -->
+                <header class="panel-header">
+                    <div class="breadcrumbs" id="panel-breadcrumbs">Math ➔ Tier 1</div>
+                    <h1 class="topic-title" id="panel-topic-title">Fractions Operations</h1>
+                    
+                    <!-- Flow Stepper Indicator -->
+                    <div class="flow-stepper">
+                        <div class="stepper-item" id="stepper-1">
+                            <div class="stepper-circle">1</div>
+                            <span class="stepper-label">Learn</span>
+                        </div>
+                        <div class="stepper-line"></div>
+                        <div class="stepper-item" id="stepper-2">
+                            <div class="stepper-circle">2</div>
+                            <span class="stepper-label">Practice</span>
+                        </div>
+                        <div class="stepper-line"></div>
+                        <div class="stepper-item" id="stepper-3">
+                            <div class="stepper-circle">3</div>
+                            <span class="stepper-label">Verify</span>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Steps Layout -->
+                <div class="steps-container">
+                    <!-- Step 1: Learn -->
+                    <div class="step-card step-active" id="step1-card">
+                        <div class="step-header">
+                            <span class="step-badge">Step 1</span>
+                            <h2 class="step-title">Learn Theory</h2>
+                        </div>
+                        <p class="step-description" id="panel-topic-description">Understand the absolute fundamentals of integer mathematics, positive-negative signs, and fractional notation.</p>
+                        <div class="resource-links" id="panel-learn-links">
+                            <!-- Populated dynamically -->
+                        </div>
+                        <div class="step-actions mt-4">
+                            <button id="complete-step1-btn" class="btn btn-primary">Mark Theory Complete <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Practice -->
+                    <div class="step-card step-locked" id="step2-card">
+                        <div class="step-header">
+                            <span class="step-badge">Step 2</span>
+                            <h2 class="step-title">Practice Drills</h2>
+                        </div>
+                        <p class="step-description">Solve problems directly on external learning platforms to verify understanding. Target: 30-40 problems.</p>
+                        <div class="practice-actions">
+                            <div class="resource-links" id="panel-practice-links">
+                                <!-- Populated dynamically -->
+                            </div>
+                            <button id="toggle-desmos-btn" class="btn btn-secondary" style="display: none;">
+                                <i class="fa-solid fa-calculator"></i> Toggle Desmos Calculator
+                            </button>
+                        </div>
+                        <div class="step-actions mt-4">
+                            <button id="complete-step2-btn" class="btn btn-primary">Mark Practice Complete <i class="fa-solid fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Log & Verify -->
+                    <div class="step-card step-locked" id="step3-card">
+                        <div class="step-header">
+                            <span class="step-badge">Step 3</span>
+                            <h2 class="step-title">Verify Mastery</h2>
+                        </div>
+                        <p class="step-description">Mark this skill as complete once you feel confident (achieved 90%+ accuracy on practice sets).</p>
+                        <div class="verification-action">
+                            <label class="mastery-checkbox-container">
+                                <input type="checkbox" id="mastery-checkbox">
+                                <span class="checkmark"></span>
+                                <span class="checkbox-label-text">Mark this topic as Mastered</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Floating Embedded Desmos Frame -->
+                <div class="desmos-container" id="desmos-frame-container" style="display: none;">
+                    <div class="desmos-header">
+                        <span class="desmos-title"><i class="fa-solid fa-calculator"></i> Desmos Graphing Calculator</span>
+                        <button id="close-desmos-btn" class="btn-close"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                    <div class="desmos-body">
+                        <!-- Embedded Desmos iframe -->
+                        <iframe id="desmos-iframe" src="" width="100%" height="450" style="border: 1px solid #222;" frameborder="0"></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Workspace Empty State (Shown when no topic is selected) -->
+            <section class="empty-state" id="empty-state-panel">
+                <div class="empty-state-content">
+                    <i class="fa-solid fa-compass empty-state-icon"></i>
+                    <h2 class="empty-state-title">Select a Topic to Start Learning</h2>
+                    <p class="empty-state-description">Click any syllabus item from the left navigation index to load curated internet study materials, practice tests, and the Desmos calculator panel.</p>
+                    <div class="schedule-reminder">
+                        <div class="schedule-badge"><i class="fa-solid fa-clock"></i> Recommended Focus Tracker</div>
+                        <div class="schedule-days">
+                            <div class="day-indicator active-math" title="Mon, Wed, Fri: Math Focus">M</div>
+                            <div class="day-indicator active-english" title="Tue, Thu: English Focus">T</div>
+                            <div class="day-indicator active-math" title="Mon, Wed, Fri: Math Focus">W</div>
+                            <div class="day-indicator active-english" title="Tue, Thu: English Focus">T</div>
+                            <div class="day-indicator active-math" title="Mon, Wed, Fri: Math Focus">F</div>
+                            <div class="day-indicator" title="Weekend: Rest & Review">S</div>
+                            <div class="day-indicator" title="Weekend: Rest & Review">S</div>
+                        </div>
+                        <p class="schedule-note">Mon/Wed/Fri: Math Focus (SAT/A-Level/OSN) | Tue/Thu: IELTS Focus | Weekends: Review</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
