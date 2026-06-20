@@ -12,7 +12,7 @@ const curriculum = [
                 title: "Integer & Negative Number Operations",
                 description: "The bedrock of all algebra. Master adding, subtracting, multiplying, and dividing with negative numbers, absolute values, and complex sign expressions. A single careless sign error can ruin an entire SAT problem.",
                 learnLinks: [
-                    { name: "Negative Numbers: Adding & Subtracting (Khan Academy)", url: "https://www.khanacademy.org/math/arithmetic/arith-review-negative-numbers/arith-sub-neg-num/v/adding-and-subtracting-negative-numbers-decide-the-sign", domain: "khanacademy.org" },
+                    { name: "Negative Numbers: Adding & Subtracting (Khan Academy)", url: "https://www.khanacademy.org/math/algebra-basics/basic-alg-foundations/alg-basics-negative-numbers/v/adding-and-subtracting-negative-number-examples", domain: "khanacademy.org" },
                     { name: "Negative Numbers: Multiplying & Dividing (Khan Academy)", url: "https://www.khanacademy.org/math/arithmetic/arith-review-negative-numbers/multiply-divide-negatives/v/multiplying-positive-and-negative-numbers", domain: "khanacademy.org" },
                     { name: "Adding & Subtracting Integers (Math Antics)", url: "https://www.youtube.com/watch?v=_BgblvF90UE", domain: "youtube.com" }
                 ],
