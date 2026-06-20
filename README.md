@@ -32,5 +32,22 @@ To get started with the CorePrep dashboard on your local machine:
 
 3. **Run the application:**
    Since this is a vanilla HTML/CSS/JS application, no build steps or package installations are required. Simply open the `index.html` file in your preferred modern web browser.
+   *Double-click `index.html` from your file explorer, or use a live server extension if you are using an editor like VS Code for hot-reloading.*   
    
-   *Double-click `index.html` from your file explorer, or use a live server extension if you are using an editor like VS Code for hot-reloading.*
+   or
+
+4. **How to Start the Server Manually in the Future**
+If the server is ever stopped and you need to start it again, open a terminal in the project directory (`d:\3. Code Project\MATH`) and run one of the following commands:
+
+* **Using Python** (recommended/installed):
+  ```powershell
+  python -m http.server 8000
+  ```
+* **Using Node/NPM**:
+  ```powershell
+  npx http-server -p 8000
+  ```
+
+Once started, open [http://localhost:8000/](http://localhost:8000/) in your browser.
+
+---
