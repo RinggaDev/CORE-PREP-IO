@@ -506,6 +506,518 @@ const curriculum = [
     }
 ];
 
+const topicStudyMaterial = {
+    integers: {
+        tips: [
+            "Rule of Signs: When multiplying or dividing, same signs give positive (+), different signs give negative (-).",
+            "Subtraction as Addition: Rewrite subtraction of a negative as addition of a positive: <span class=\"tip-code\">a - (-b) = a + b</span>.",
+            "Absolute Value: <span class=\"tip-code\">|x|</span> is the distance from 0. It is always non-negative. E.g., <span class=\"tip-code\">|-5| = 5</span>.",
+            "SAT Trap: Watch out for parentheses! <span class=\"tip-code\">-x²</span> is not the same as <span class=\"tip-code\">(-x)²</span>. If x = -3, <span class=\"tip-code\">-x² = -9</span>, but <span class=\"tip-code\">(-x)² = 9</span>."
+        ],
+        aiPrompts: [
+            {
+                title: "Socratic Integer Tutor",
+                desc: "Guides you step-by-step through solving negative number equations without giving away answers directly.",
+                prompt: "Act as a Socratic math tutor. I am studying Integer & Negative Number Operations. Do not give me the answers directly. Ask me one question at a time to check my understanding and guide me to solve questions involving integers and double signs step-by-step."
+            },
+            {
+                title: "Feynman Analogy Guide",
+                desc: "Explains negative number math using simple, real-world concepts (like bank accounts or elevators).",
+                prompt: "Explain the concepts of adding, subtracting, multiplying, and dividing negative numbers using the Feynman Technique. Use simple real-world analogies (like debts, elevators, or walking backwards) to make it intuitive."
+            },
+            {
+                title: "Common Pitfalls Quiz",
+                desc: "Tests your ability to spot typical sign errors on exams.",
+                prompt: "Provide 3 algebraic equations containing double negative signs and absolute values where students commonly make careless errors. Show the incorrect way students solve them, explain why it is incorrect, and then ask me to solve them correctly."
+            }
+        ]
+    },
+    pemdas: {
+        tips: [
+            "Order: Parentheses ➔ Exponents ➔ Multiplication & Division (Left to Right) ➔ Addition & Subtraction (Left to Right).",
+            "Division Trap: Division and multiplication have the same priority. Solve them strictly from left to right. E.g., <span class=\"tip-code\">8 ÷ 2 × 4 = 4 × 4 = 16</span>, NOT <span class=\"tip-code\">8 ÷ 8 = 1</span>.",
+            "Fraction Bar: A fraction bar acts as a grouping symbol. Fully simplify the numerator and denominator before dividing."
+        ],
+        aiPrompts: [
+            {
+                title: "Order of Operations Evaluator",
+                desc: "Generates step-by-step nested PEMDAS problems to drill calculation order.",
+                prompt: "Generate 3 advanced arithmetic problems containing nested parentheses, exponents, fractions, and multiplication/division to practice PEMDAS. Walk me through the step-by-step order of operations for solving them."
+            },
+            {
+                title: "Common Traps Checker",
+                desc: "Explains why left-to-right priority causes mistakes in division and multiplication.",
+                prompt: "Explain the common pitfalls when applying PEMDAS/BODMAS, particularly the left-to-right rule for multiplication/division and addition/subtraction. Provide examples of expressions that are frequently evaluated incorrectly."
+            }
+        ]
+    },
+    fractions: {
+        tips: [
+            "Common Denominators: Required for addition and subtraction. Use the Least Common Multiple (LCM) of denominators.",
+            "Multiplication: Multiply straight across: <span class=\"tip-code\">(a/b) × (c/d) = (ac)/(bd)</span>. No common denominator needed!",
+            "Division (Keep-Change-Flip): Multiply by the reciprocal: <span class=\"tip-code\">(a/b) ÷ (c/d) = (a/b) × (d/c)</span>.",
+            "Simplifying: Divide both the numerator and the denominator by their Greatest Common Factor (GCF)."
+        ],
+        aiPrompts: [
+            {
+                title: "Fractions Visualizer",
+                desc: "Asks the AI to explain fractions using visual descriptions and slicing analogies.",
+                prompt: "Explain fraction addition, subtraction, multiplication, and division visually using analogies like pizza slices, measuring cups, or coordinate lines. Keep the explanation intuitive for someone who struggles with abstract math."
+            },
+            {
+                title: "Reciprocal & Division Drills",
+                desc: "Creates problems focusing on complex fractions and division by fractions.",
+                prompt: "Act as a math tutor. Give me 3 exercises focusing on dividing fractions by fractions and simplifying complex algebraic fractions. Wait for my response before giving the step-by-step solution."
+            }
+        ]
+    },
+    "exponents-roots": {
+        tips: [
+            "Product Rule: <span class=\"tip-code\">xᵃ · xᵇ = xᵃ⁺ᵇ</span>.",
+            "Quotient Rule: <span class=\"tip-code\">xᵃ / xᵇ = xᵃ⁻ᵇ</span>.",
+            "Power of Power Rule: <span class=\"tip-code\">(xᵃ)ᵇ = xᵃᵇ</span>.",
+            "Negative Exponents: <span class=\"tip-code\">x⁻ⁿ = 1/xⁿ</span>.",
+            "Fractional Exponents: <span class=\"tip-code\">x^(a/b) = ᵇ√xᵃ</span>.",
+            "Radical Simplification: Find the largest perfect square factor: <span class=\"tip-code\">√18 = √(9 · 2) = 3√2</span>."
+        ],
+        aiPrompts: [
+            {
+                title: "Exponent Laws Simplifier",
+                desc: "Helps you memorize and practice applying product, quotient, and power rules.",
+                prompt: "Create a cheat sheet and practice drill for the 5 fundamental exponent rules (product, quotient, power-of-power, negative exponents, fractional exponents). Give me 3 simplify-the-expression questions to solve."
+            },
+            {
+                title: "Radicals & Roots Solver",
+                desc: "Shows you how to rationalize denominators and simplify square/cube roots.",
+                prompt: "Explain how to simplify radicals and how to rationalize denominators (e.g., simplifying expressions like 3 / (2 + √5)). Give me step-by-step rules and a practice question."
+            }
+        ]
+    },
+    "gcf-prime": {
+        tips: [
+            "Prime Factorization: Break down a number into its prime building blocks (e.g., <span class=\"tip-code\">12 = 2² · 3</span>).",
+            "GCF (Greatest Common Factor): Take the lowest power of all common prime factors. Used for simplifying fractions.",
+            "LCM (Least Common Multiple): Take the highest power of all prime factors that appear in either number. Used for finding common denominators.",
+            "Formula: <span class=\"tip-code\">GCF(a,b) × LCM(a,b) = a × b</span>."
+        ],
+        aiPrompts: [
+            {
+                title: "Euclidean Algorithm Coach",
+                desc: "Teaches you the fast method to find GCF of large numbers without listing factors.",
+                prompt: "Explain the Euclidean Algorithm for finding the Greatest Common Divisor (GCD) of large numbers step-by-step. Give me a walkthrough for GCD(324, 76) and then ask me to try one."
+            },
+            {
+                title: "LCM Word Problems Tutor",
+                desc: "Helps you recognize when a word problem is asking for GCF vs. LCM.",
+                prompt: "Provide 3 word problems where I need to apply GCF or LCM (e.g., synchronized bell ringing, cutting tiles). Explain the keywords in the questions that reveal whether GCF or LCM is needed."
+            }
+        ]
+    },
+    "algebraic-manipulation": {
+        tips: [
+            "FOIL Method: Expand <span class=\"tip-code\">(a+b)(c+d) = ac + ad + bc + bd</span>.",
+            "Difference of Squares: <span class=\"tip-code\">a² - b² = (a-b)(a+b)</span>.",
+            "Perfect Square Trinomials: <span class=\"tip-code\">(a ± b)² = a² ± 2ab + b²</span>.",
+            "Factoring: For trinomial <span class=\"tip-code\">x² + bx + c</span>, find two numbers that multiply to c and add to b.",
+            "Common Trap: Factoring <span class=\"tip-code\">(x+y)²</span> as <span class=\"tip-code\">x² + y²</span>. Don't forget the middle term <span class=\"tip-code\">2xy</span>!"
+        ],
+        aiPrompts: [
+            {
+                title: "Factoring Masterclass",
+                desc: "Drills factoring quadratics (when a = 1 and when a > 1).",
+                prompt: "Act as an SAT Math Coach. I need to practice factoring quadratic trinomials of the form ax^2 + bx + c. Provide 3 problems (one where a=1, one where a>1, and one difference of squares) and guide me through the factoring steps."
+            },
+            {
+                title: "Polynomial Division Tutor",
+                desc: "Guides you through polynomial long division and synthetic division.",
+                prompt: "Explain polynomial long division and synthetic division step-by-step. Show how to divide (x^3 + 3x^2 - 4) by (x - 1) and explain the Remainder Theorem."
+            }
+        ]
+    },
+    "equations-inequalities": {
+        tips: [
+            "Golden Rule: Whatever you do to one side of the equation, you must do to the other.",
+            "Inequality Trap: When multiplying or dividing both sides by a negative number, you MUST flip the inequality sign! E.g., <span class=\"tip-code\">-2x < 6 ➔ x > -3</span>.",
+            "Quadratic Formula: For <span class=\"tip-code\">ax² + bx + c = 0</span>, <span class=\"tip-code\">x = (-b ± √(b²-4ac)) / 2a</span>.",
+            "Completing the Square: To rewrite <span class=\"tip-code\">x² + bx</span>, add and subtract <span class=\"tip-code\">(b/2)²</span>."
+        ],
+        aiPrompts: [
+            {
+                title: "Inequality Sign Checker",
+                desc: "Drills multi-step inequalities, highlighting negative multiplication rules.",
+                prompt: "Provide 3 algebraic inequalities to solve, including fractions and negative coefficients. Monitor my steps and check if I correctly flip the inequality sign when multiplying or dividing by negative numbers."
+            },
+            {
+                title: "Quadratic Equation Specialist",
+                desc: "Helps you choose the best solving method: factoring, completing the square, or quadratic formula.",
+                prompt: "Give me a quadratic equation that cannot be easily factored. Guide me to solve it using: (1) completing the square, and (2) the quadratic formula. Verify that both methods yield the same result."
+            }
+        ]
+    },
+    "system-equations": {
+        tips: [
+            "Substitution Method: Best when one variable is already isolated or has a coefficient of 1.",
+            "Elimination Method: Multiply equations by constants to cancel out one variable when added together.",
+            "Graphical Meaning: The solution is the point where the lines intersect.",
+            "Number of Solutions: Parallel lines (same slope, different y-intercept) have NO solution. Overlapping lines have infinite solutions. Intersecting lines have exactly one solution."
+        ],
+        aiPrompts: [
+            {
+                title: "SAT Word Problem Solver",
+                desc: "Teaches you how to translate wordy English stories into clean equations.",
+                prompt: "Provide 2 system of equations word problems typical of the SAT Math section (e.g., ticket pricing, speed/distance, mixture problems). Help me translate the English sentences into mathematical equations first, then guide me to solve them."
+            },
+            {
+                title: "Systems with Infinite/No Solutions",
+                desc: "Explains how to determine unknown constants in equations for zero or infinite intersections.",
+                prompt: "Explain how to solve systems of equations questions that ask for 'no solutions' or 'infinitely many solutions' when a constant (like 'k' or 'a') is present. Give me a practice problem of this type."
+            }
+        ]
+    },
+    "set-theory": {
+        tips: [
+            "Union (<span class=\"tip-code\">A ∪ B</span>): Elements in A OR B (or both). Includes everything in both circles.",
+            "Intersection (<span class=\"tip-code\">A ∩ B</span>): Elements in A AND B. The overlapping region.",
+            "Complement (<span class=\"tip-code\">A'</span>): Elements not in set A.",
+            "Venn Diagram Formula: <span class=\"tip-code\">|A ∪ B| = |A| + |B| - |A ∩ B|</span>."
+        ],
+        aiPrompts: [
+            {
+                title: "Venn Diagram Logic Driller",
+                desc: "Creates complex three-circle logic puzzles and shows you how to fill them from the center outward.",
+                prompt: "Create a Venn Diagram logic puzzle involving three sets (e.g., students taking Math, Physics, and Chemistry). Explain the step-by-step strategy of starting from the central intersection and working outwards."
+            }
+        ]
+    },
+    "geometry-basics": {
+        tips: [
+            "Pythagorean Theorem: <span class=\"tip-code\">a² + b² = c²</span> (c is the hypotenuse).",
+            "Pythagorean Triples to Memorize: (3, 4, 5), (5, 12, 13), (8, 15, 17), (7, 24, 25).",
+            "Special Right Triangles: 45-45-90 ratio is <span class=\"tip-code\">1 : 1 : √2</span>. 30-60-90 ratio is <span class=\"tip-code\">1 : √3 : 2</span>.",
+            "Circle Arc & Sector: <span class=\"tip-code\">Arc Length = (θ/360) · 2πr</span>. <span class=\"tip-code\">Sector Area = (θ/360) · πr²</span>."
+        ],
+        aiPrompts: [
+            {
+                title: "Special Right Triangles Coach",
+                desc: "Explains the shortcuts for finding side lengths in 30-60-90 and 45-45-90 triangles.",
+                prompt: "Act as an SAT Math tutor. Teach me how to quickly find missing side lengths in 30-60-90 and 45-45-90 triangles without using the Pythagorean theorem. Provide 3 practice problems."
+            },
+            {
+                title: "Circle Theorems Master",
+                desc: "Reviews arc lengths, sector areas, and central vs. inscribed angle rules.",
+                prompt: "Explain the rules of circle geometry: central angles, inscribed angles, tangent lines, arc length, and sector area. Provide a diagram-description practice problem for each."
+            }
+        ]
+    },
+    "similarity-congruence": {
+        tips: [
+            "Similar Triangles: Angles are equal, sides are proportional. (Criteria: AA, SAS, SSS).",
+            "Congruent Triangles: Shape and size are identical. Sides and angles are equal. (Criteria: SSS, SAS, ASA, AAS, HL).",
+            "Area Scale Factor: If the side ratio is k, the area ratio is <span class=\"tip-code\">k²</span>! If volume, it is <span class=\"tip-code\">k³</span>."
+        ],
+        aiPrompts: [
+            {
+                title: "Similarity & Ratios Guide",
+                desc: "Explains how to set up proportions for nested triangles.",
+                prompt: "Explain how to set up side length proportions for similar triangles, especially nested triangles (one inside another). Give me a step-by-step example and a practice problem."
+            }
+        ]
+    },
+    "linear-graphs": {
+        tips: [
+            "Slope Formula: <span class=\"tip-code\">m = (y₂ - y₁) / (x₂ - x₁)</span>.",
+            "Forms: Slope-Intercept (<span class=\"tip-code\">y = mx + b</span>), Point-Slope (<span class=\"tip-code\">y - y₁ = m(x - x₁)</span>).",
+            "Parallel vs. Perpendicular: Parallel slopes are equal (<span class=\"tip-code\">m₁ = m₂</span>). Perpendicular slopes are negative reciprocals (<span class=\"tip-code\">m₁ · m₂ = -1</span>).",
+            "Distance Formula: <span class=\"tip-code\">d = √((x₂-x₁)² + (y₂-y₁)²)</span>."
+        ],
+        aiPrompts: [
+            {
+                title: "Coordinate Geometry Helper",
+                desc: "Drills linear equation conversions and finding perpendicular bisectors.",
+                prompt: "Explain coordinate geometry basics: how to find the equation of a line parallel/perpendicular to a given line passing through a specific point. Ask me a 2-step question to solve."
+            }
+        ]
+    },
+    "quadratic-functions": {
+        tips: [
+            "Forms: Standard (<span class=\"tip-code\">y = ax² + bx + c</span>), Vertex (<span class=\"tip-code\">y = a(x-h)² + k</span> where (h,k) is the vertex).",
+            "Finding Vertex: <span class=\"tip-code\">h = -b / 2a</span>, then plug in to find <span class=\"tip-code\">k = f(h)</span>.",
+            "Discriminant: <span class=\"tip-code\">D = b² - 4ac</span>. If D > 0, 2 real roots; if D = 0, 1 real root; if D < 0, 0 real roots.",
+            "Parabola Direction: If a > 0, opens UP (min vertex). If a < 0, opens DOWN (max vertex)."
+        ],
+        aiPrompts: [
+            {
+                title: "Parabola Analysis Drill",
+                desc: "Teaches you how to convert quadratic equations into vertex form by completing the square.",
+                prompt: "Act as an Advanced Math Coach. Explain how to convert the quadratic equation y = 2x^2 - 12x + 10 into vertex form y = a(x-h)^2 + k by completing the square. Ask me to perform a similar conversion and check my work."
+            },
+            {
+                title: "Discriminant & Roots Tutor",
+                desc: "Focuses on discriminant questions where you solve for unknown constants.",
+                prompt: "Provide 2 problems exploring the discriminant of a quadratic equation. One problem should ask me to find the range of 'k' values for which the equation has no real solutions."
+            }
+        ]
+    },
+    logarithms: {
+        tips: [
+            "Definition: <span class=\"tip-code\">log_b(x) = y ➔ bʸ = x</span>.",
+            "Product Rule: <span class=\"tip-code\">log_b(xy) = log_b(x) + log_b(y)</span>.",
+            "Quotient Rule: <span class=\"tip-code\">log_b(x/y) = log_b(x) - log_b(y)</span>.",
+            "Power Rule: <span class=\"tip-code\">log_b(xᵏ) = k log_b(x)</span>.",
+            "Change of Base: <span class=\"tip-code\">log_b(x) = ln(x) / ln(b)</span>."
+        ],
+        aiPrompts: [
+            {
+                title: "Log Laws Drill",
+                desc: "Drills expanding and condensing complex logarithmic expressions.",
+                prompt: "Generate 3 expressions to practice expanding and condensing using logarithm properties (product, quotient, power rules). Walk me through the step-by-step derivation."
+            }
+        ]
+    },
+    "trigonometry-basics": {
+        tips: [
+            "SOH-CAH-TOA: <span class=\"tip-code\">sin(θ) = Opp/Hyp</span>, <span class=\"tip-code\">cos(θ) = Adj/Hyp</span>, <span class=\"tip-code\">tan(θ) = Opp/Adj</span>.",
+            "Identity: <span class=\"tip-code\">sin²(θ) + cos²(θ) = 1</span>.",
+            "Unit Circle Coordinates: <span class=\"tip-code\">(x, y) = (cos(θ), sin(θ))</span>.",
+            "Degrees to Radians: Multiply by <span class=\"tip-code\">π / 180</span>."
+        ],
+        aiPrompts: [
+            {
+                title: "Unit Circle Memorizer",
+                desc: "Provides tricks and shortcuts (like the Hand Rule) to recall sin/cos values quickly.",
+                prompt: "Explain the unit circle and teach me shortcuts (like the finger shortcut or coordinate patterns) to quickly memorize sine and cosine values for standard angles: 0, 30, 45, 60, and 90 degrees."
+            }
+        ]
+    },
+    "non-linear-inequalities": {
+        tips: [
+            "Wavy-Curve Method: Isolation (make right side 0) ➔ Factor (find roots) ➔ Plot critical numbers on number line ➔ Determine signs of intervals starting positive from the far right.",
+            "Even Multiplicity: At roots with even exponents (e.g. <span class=\"tip-code\">(x-c)²</span>), sign does NOT change (curve bounces).",
+            "Odd Multiplicity: At roots with odd exponents, sign changes (curve crosses line)."
+        ],
+        aiPrompts: [
+            {
+                title: "Wavy Curve Method Coach",
+                desc: "Teaches the sign chart method for solving polynomial and rational inequalities.",
+                prompt: "Explain the Wavy Curve (Sign Chart) method for solving non-linear polynomial inequalities. Guide me through solving (x-1)(x+2)^2(x-3) >= 0."
+            }
+        ]
+    },
+    "combinatorics-intro": {
+        tips: [
+            "Permutations: Order MATTERS (e.g. race positions, codes). <span class=\"tip-code\">P(n,r) = n! / (n-r)!</span>.",
+            "Combinations: Order DOES NOT matter (e.g. committees). <span class=\"tip-code\">C(n,r) = n! / (r!(n-r)!)</span>.",
+            "Probability: <span class=\"tip-code\">P(A) = Favorable / Total</span>.",
+            "Complement: <span class=\"tip-code\">P(A') = 1 - P(A)</span>."
+        ],
+        aiPrompts: [
+            {
+                title: "Permutations vs. Combinations",
+                desc: "Explains how to identify when order matters in word problems.",
+                prompt: "Explain the difference between Permutations and Combinations. Provide 3 word problems, and help me determine which counting formula applies to each."
+            }
+        ]
+    },
+    "calculus-limits": {
+        tips: [
+            "Limit Concept: The value f(x) approaches as x gets arbitrarily close to c from both sides.",
+            "Direct Substitution: Try this first. If you get a real number, that is your limit.",
+            "Indeterminate Form (0/0): Factor, rationalize, or expand the expression, then substitute again.",
+            "Continuity: Continuous at c if: (1) f(c) exists, (2) limit exists, and (3) limit = f(c)."
+        ],
+        aiPrompts: [
+            {
+                title: "Indeterminate Limits Solver",
+                desc: "Teaches factoring and rationalizing techniques for 0/0 limits.",
+                prompt: "Explain how to evaluate algebraic limits that result in the indeterminate form 0/0. Provide a step-by-step walkthrough for factoring, rationalizing denominators, and using the squeeze theorem."
+            }
+        ]
+    },
+    "calculus-derivatives": {
+        tips: [
+            "Derivative Definition: Instantaneous rate of change / slope of tangent line.",
+            "Power Rule: <span class=\"tip-code\">d/dx[xⁿ] = n xⁿ⁻¹</span>.",
+            "Product Rule: <span class=\"tip-code\">(uv)' = u'v + uv'</span>.",
+            "Quotient Rule: <span class=\"tip-code\">(u/v)' = (u'v - uv') / v²</span>.",
+            "Chain Rule: <span class=\"tip-code\">d/dx[f(g(x))] = f'(g(x)) · g'(x)</span>."
+        ],
+        aiPrompts: [
+            {
+                title: "Chain Rule Masterclass",
+                desc: "Drills nested derivatives using the chain rule.",
+                prompt: "Act as a Calculus Tutor. I want to master the Chain Rule for derivatives. Explain it using nested functions, and give me 3 practice problems to solve step-by-step."
+            }
+        ]
+    },
+    "calculus-deriv-apps": {
+        tips: [
+            "First Derivative Test: If f'(x) > 0, f is increasing. If f'(x) < 0, f is decreasing. Critical points occur where f'(x) = 0 or undefined.",
+            "Concavity: If f''(x) > 0, concave up. If f''(x) < 0, concave down. Inflection point occurs where concavity changes sign.",
+            "AI Connection: Gradient Descent adjusts parameters: <span class=\"tip-code\">w ➔ w - α · ∂L/∂w</span> to minimize loss."
+        ],
+        aiPrompts: [
+            {
+                title: "Optimization Problem Coach",
+                desc: "Teaches you how to set up and solve classic calc min/max word problems.",
+                prompt: "Explain the optimization workflow in Calculus (finding local maxima and minima to solve real-world problems). Provide a classic problem (like maximizing the area of a fence) and guide me through the steps."
+            },
+            {
+                title: "Gradient Descent in AI",
+                desc: "Deep-dives into how neural networks use derivatives to learn.",
+                prompt: "Explain the connection between derivative applications (like finding the slope to locate minimum points) and Gradient Descent in Neural Networks. Use clear analogies and math terms."
+            }
+        ]
+    },
+    "calculus-integrals": {
+        tips: [
+            "Antiderivative: The reverse of differentiation. Don't forget <span class=\"tip-code\">+ C</span>!",
+            "Power Rule for Integrals: <span class=\"tip-code\">∫ xⁿ dx = xⁿ⁺¹ / (n+1) + C</span> (for n ≠ -1).",
+            "Integral of 1/x: <span class=\"tip-code\">∫ (1/x) dx = ln|x| + C</span>.",
+            "FTC: <span class=\"tip-code\">∫[a to b] f(x) dx = F(b) - F(a)</span> where F'(x) = f(x)."
+        ],
+        aiPrompts: [
+            {
+                title: "U-Substitution Specialist",
+                desc: "Drills matching composite functions with their derivative parts for integration.",
+                prompt: "Explain U-Substitution for integrals step-by-step. Show how to identify which part of the integrand to set as 'u', and give me 2 practice problems."
+            }
+        ]
+    },
+    "calculus-series": {
+        tips: [
+            "Geometric Series: converges to <span class=\"tip-code\">a / (1-r)</span> if |r| < 1.",
+            "Ratio Test: converges if <span class=\"tip-code\">lim |a_n+1 / a_n| < 1</span>.",
+            "Taylor Series: <span class=\"tip-code\">f(x) = Σ f⁽ⁿ⁾(a)/n! (x-a)ⁿ</span>.",
+            "Key Maclaurin Series: <span class=\"tip-code\">eˣ = Σ xⁿ/n!</span>, <span class=\"tip-code\">sin(x) = Σ (-1)ⁿ x²ⁿ⁺¹/(2n+1)!</span>."
+        ],
+        aiPrompts: [
+            {
+                title: "Taylor Series Approximator",
+                desc: "Explains how infinite polynomials approximate complex functions like sin(x) or e^x.",
+                prompt: "Explain Taylor and Maclaurin series expansions. Why do we represent trigonometric or exponential functions as infinite polynomials in mathematics and AI? Give a visual-style text explanation."
+            }
+        ]
+    },
+    "calculus-integration-adv": {
+        tips: [
+            "Integration by Parts: <span class=\"tip-code\">∫ u dv = uv - ∫ v du</span>.",
+            "LIATE Rule: Choose 'u' in order: Logarithmic, Inverse trig, Algebraic, Trigonometric, Exponential.",
+            "Partial Fractions: Expand <span class=\"tip-code\">1 / ((x-a)(x-b)) = A/(x-a) + B/(x-b)</span> then integrate."
+        ],
+        aiPrompts: [
+            {
+                title: "Integration by Parts Drill",
+                desc: "Drills selecting 'u' and 'dv' correctly to avoid infinite integration loops.",
+                prompt: "Explain Integration by Parts. Give me 2 problems to practice (e.g., integrating x*ln(x) or x*e^x) and guide me through selecting 'u' and 'dv' using LIATE."
+            }
+        ]
+    },
+    "linear-algebra-matrices": {
+        tips: [
+            "Matrix Multiplication: Row-by-column dot products. <span class=\"tip-code\">A_m×n · B_n×p = C_m×p</span>.",
+            "Determinant (2x2): <span class=\"tip-code\">ad - bc</span>. If det = 0, matrix is singular (no inverse).",
+            "Transpose (Aᵀ): Swapping rows and columns.",
+            "AI Core: All images, text embeddings, and weights in AI are represented as matrices of floating numbers."
+        ],
+        aiPrompts: [
+            {
+                title: "Linear Transformations Visualizer",
+                desc: "Explains matrix multiplication as stretching, rotating, and shearing coordinate spaces.",
+                prompt: "Explain matrix multiplication and linear transformations visually (e.g. stretching or rotating vectors in space). Explain why this mathematical system is ideal for representing image pixels and word embeddings in AI."
+            }
+        ]
+    },
+    "ai-math-gradient-descent": {
+        tips: [
+            "Partial Derivative: Derivative with respect to one variable, treating others as constants.",
+            "Gradient (∇f): Vector of all partial derivatives. Points in the direction of steepest increase.",
+            "Gradient Descent Update: <span class=\"tip-code\">x_new = x_old - η · ∇f(x_old)</span>.",
+            "Learning Rate (η): Controls step size. Too large overshoots; too small takes forever."
+        ],
+        aiPrompts: [
+            {
+                title: "Backpropagation Calculus",
+                desc: "Walks through how chain rule and partial derivatives adjust weights in neural networks.",
+                prompt: "Explain how partial derivatives and the chain rule are used in Backpropagation to train neural networks. Walk through the math using a simple 3-node network (input, hidden weight, output loss)."
+            }
+        ]
+    },
+    "ielts-grammar": {
+        tips: [
+            "Complex Sentences: Combine clauses using subordinators (although, since, whereas).",
+            "Relative Clauses: Add details using 'which', 'who', 'whose', 'where'. Excellent for IELTS Task 1 synthesis.",
+            "Advanced Structures: Use inversion (e.g., 'Rarely have we seen...') for band 7.5+ grammar marks."
+        ],
+        aiPrompts: [
+            {
+                title: "IELTS Sentence Upgrader",
+                desc: "Rewrite simple sentences into band 8+ structures using relative clauses, nominalization, or inversions.",
+                prompt: "Act as an IELTS Writing Examiner. I will write a simple sentence. Please rewrite it in 3 ways to achieve Band 8+ grammar: (1) using passive/relative clauses, (2) using advanced nominalization, and (3) using inversion or conditional structures."
+            }
+        ]
+    },
+    "ielts-vocabulary": {
+        tips: [
+            "Academic Collocations: Learn phrases like 'profound impact', 'mitigate consequences', 'skeptical view'.",
+            "Paraphrasing: The core reading skill. Match keywords in questions with synonyms in the texts.",
+            "Depth > Breadth: Focus on using a few advanced words perfectly in context rather than many complex words incorrectly."
+        ],
+        aiPrompts: [
+            {
+                title: "Academic Vocabulary Builder",
+                desc: "Generates high-level collocations and idioms for specific essay topics.",
+                prompt: "Provide 10 high-level academic vocabulary words and collocations useful for an IELTS essay. For each, give the definition, band 8+ sample sentence, and common synonyms."
+            }
+        ]
+    },
+    "ielts-format": {
+        tips: [
+            "Writing Criteria: Task Achievement, Coherence & Cohesion, Lexical Resource, Grammatical Range & Accuracy (25% each).",
+            "Speaking Criteria: Fluency & Coherence, Lexical Resource, Grammatical Range & Accuracy, Pronunciation (25% each).",
+            "Timing: Budget 20 mins for Task 1 and 40 mins for Task 2. Task 2 is worth twice the points!"
+        ],
+        aiPrompts: [
+            {
+                title: "Examiner Rubric Explainer",
+                desc: "Breaks down band descriptors to show you exactly what is required to cross from Band 6 to Band 7/8.",
+                prompt: "Act as an IELTS Examiner. Explain the difference between Band 6, Band 7, and Band 8 in the Writing section. Detail exactly what candidates must do in terms of Lexical Resource and Coherence to level up."
+            }
+        ]
+    },
+    "ielts-tactics": {
+        tips: [
+            "Task 1 Structure: Paraphrase Intro ➔ Overview (2 major trends) ➔ Detail Paragraph 1 ➔ Detail Paragraph 2. No personal opinions!",
+            "Task 2 Structure: Intro (Paraphrase + Thesis) ➔ Body 1 (Idea + Detail + Example) ➔ Body 2 (Idea + Detail + Example) ➔ Conclusion (Summarize).",
+            "Speaking Part 2 (Cue Card): Use the 1-min prep time to jot down a timeline (Past, Present, Future) to keep speaking for 2 mins."
+        ],
+        aiPrompts: [
+            {
+                title: "Interactive IELTS Essay Checker",
+                desc: "Grades your essay draft against the official rubrics, giving a band score and specific line edits.",
+                prompt: "Act as an official IELTS Examiner. I will paste an IELTS Writing Task 2 essay. Evaluate it against the 4 assessment criteria, assign a band score, and suggest detailed edits to upgrade my sentences."
+            },
+            {
+                title: "IELTS Speaking Part 3 Partner",
+                desc: "Engages you in a Socratic discussion on academic issues, grading your oral responses.",
+                prompt: "Let's practice IELTS Speaking Part 3. You are the examiner. Ask me one abstract question. I will reply, then you will evaluate my fluency, vocabulary, and grammar, offering band-score feedback."
+            }
+        ]
+    },
+    "ielts-mocks": {
+        tips: [
+            "Listening Prediction: Before the audio plays, read questions to predict word types (noun, number, date).",
+            "Reading Skimming: Spend 2-3 mins reading headings and first sentences to map the passage structure before questions.",
+            "Draft Planning: Always spend 3-5 mins planning your writing outline before starting. An unplanned essay caps your score."
+        ],
+        aiPrompts: [
+            {
+                title: "Reading Map Trainer",
+                desc: "Teaches you how to skim and locate answers quickly by mapping synonyms.",
+                prompt: "Act as an IELTS Reading Coach. Give me a short paragraph (200 words) and a typical IELTS reading question (e.g. matching headings or multiple choice). Explain how to scan the text using keyword-synonym mapping to find the answer in 30 seconds."
+            }
+        ]
+    }
+};
 
 /* ==========================================================================
    APP CONTROLLER & STATE MANAGEMENT
@@ -848,6 +1360,57 @@ class CorePrepApp {
             desmosBtn.style.display = "none";
         }
 
+        // Populate Study Tips / Notes
+        const tipsContainer = document.getElementById("panel-study-tips-container");
+        const tipsList = document.getElementById("panel-tips-list");
+        tipsList.innerHTML = "";
+        
+        const extraData = topicStudyMaterial[topic.id];
+        
+        if (extraData && extraData.tips && extraData.tips.length > 0) {
+            tipsContainer.style.display = "block";
+            extraData.tips.forEach(tip => {
+                const li = document.createElement("li");
+                li.innerHTML = `<i class="fa-regular fa-lightbulb"></i> <span>${tip}</span>`;
+                tipsList.appendChild(li);
+            });
+        } else {
+            tipsContainer.style.display = "none";
+        }
+
+        // Populate AI Prompts
+        const promptsContainer = document.getElementById("panel-ai-prompts-container");
+        const promptsGrid = document.getElementById("panel-prompts-grid");
+        promptsGrid.innerHTML = "";
+
+        if (extraData && extraData.aiPrompts && extraData.aiPrompts.length > 0) {
+            promptsContainer.style.display = "block";
+            extraData.aiPrompts.forEach(p => {
+                const card = document.createElement("div");
+                card.className = "prompt-card";
+                card.innerHTML = `
+                    <div class="prompt-card-header">
+                        <div class="prompt-card-title"><i class="fa-solid fa-robot"></i> ${p.title}</div>
+                    </div>
+                    <div class="prompt-card-desc">${p.desc}</div>
+                    <div class="prompt-text-container">
+                        <div class="prompt-text">${p.prompt}</div>
+                        <button class="copy-prompt-btn" title="Copy Prompt"><i class="fa-regular fa-clipboard"></i></button>
+                    </div>
+                `;
+                
+                // Add event listener to the copy button
+                const copyBtn = card.querySelector(".copy-prompt-btn");
+                copyBtn.addEventListener("click", () => {
+                    this.copyPromptToClipboard(p.prompt, copyBtn);
+                });
+                
+                promptsGrid.appendChild(card);
+            });
+        } else {
+            promptsContainer.style.display = "none";
+        }
+
         // Set mastery checkbox value
         const isMastered = this.state.topicProgress[topic.id]?.isMastered === true;
         document.getElementById("mastery-checkbox").checked = isMastered;
@@ -937,6 +1500,42 @@ class CorePrepApp {
         iframe.src = ""; // Unload iframe resources
         this.desmosOpen = false;
         document.getElementById("toggle-desmos-btn").innerHTML = `<i class="fa-solid fa-calculator"></i> Toggle Desmos Calculator`;
+    }
+
+    copyPromptToClipboard(text, buttonElement) {
+        navigator.clipboard.writeText(text).then(() => {
+            // Success animation
+            buttonElement.classList.add("copied");
+            buttonElement.innerHTML = `<i class="fa-solid fa-check"></i>`;
+            
+            const originalTitle = buttonElement.getAttribute("title");
+            buttonElement.setAttribute("title", "Copied!");
+            
+            setTimeout(() => {
+                buttonElement.classList.remove("copied");
+                buttonElement.innerHTML = `<i class="fa-regular fa-clipboard"></i>`;
+                buttonElement.setAttribute("title", originalTitle || "Copy Prompt");
+            }, 2000);
+        }).catch(err => {
+            console.error("Could not copy prompt text: ", err);
+            // Fallback for older browsers
+            const textarea = document.createElement("textarea");
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand("copy");
+                buttonElement.classList.add("copied");
+                buttonElement.innerHTML = `<i class="fa-solid fa-check"></i>`;
+                setTimeout(() => {
+                    buttonElement.classList.remove("copied");
+                    buttonElement.innerHTML = `<i class="fa-regular fa-clipboard"></i>`;
+                }, 2000);
+            } catch (e) {
+                alert("Please manually select and copy the prompt text.");
+            }
+            document.body.removeChild(textarea);
+        });
     }
 }
 

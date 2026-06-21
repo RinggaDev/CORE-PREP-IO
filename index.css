@@ -790,3 +790,166 @@ iframe#desmos-iframe {
     color: var(--bg-main);
 }
 
+/* ==========================================================================
+   STUDY NOTES, TIPS, & AI PROMPTS STYLING
+   ========================================================================== */
+.study-tips-section {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+.study-tips-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--teal-primary);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.tips-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.tips-list li {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    background-color: rgba(12, 14, 18, 0.3);
+    border-left: 3px solid var(--teal-primary);
+    padding: 10px 14px;
+    border-radius: 0 var(--border-radius-sm) var(--border-radius-sm) 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+.tips-list li i {
+    color: var(--teal-primary);
+    font-size: 11px;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+.tip-code {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    background-color: rgba(0, 245, 212, 0.08);
+    color: var(--teal-primary);
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 245, 212, 0.15);
+}
+
+.ai-prompts-section {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+.ai-prompts-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.ai-prompts-title i {
+    color: var(--blue-track);
+}
+.ai-prompts-subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+.prompts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+.prompt-card {
+    background-color: rgba(22, 26, 34, 0.6);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-md);
+    padding: 16px;
+    transition: all 0.25s ease;
+    position: relative;
+}
+.prompt-card:hover {
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 0 4px 20px rgba(59, 130, 246, 0.06);
+    transform: translateY(-1px);
+}
+.prompt-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+.prompt-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.prompt-card-title i {
+    font-size: 10px;
+    color: var(--blue-track);
+}
+.prompt-card-desc {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+.prompt-text-container {
+    position: relative;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+}
+.prompt-text {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-secondary);
+    background-color: var(--bg-main);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-sm);
+    padding: 12px 48px 12px 12px;
+    white-space: pre-wrap;
+    max-height: 110px;
+    overflow-y: auto;
+    line-height: 1.6;
+}
+.copy-prompt-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: rgba(22, 26, 34, 0.85);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    border-radius: var(--border-radius-sm);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 12px;
+}
+.copy-prompt-btn:hover {
+    color: var(--teal-primary);
+    border-color: var(--teal-primary);
+    background-color: var(--bg-hover);
+    box-shadow: 0 0 8px var(--teal-glow);
+}
+.copy-prompt-btn.copied {
+    color: var(--bg-main);
+    background-color: var(--teal-primary);
+    border-color: var(--teal-primary);
+}
+

@@ -48,6 +48,8 @@ If the server is ever stopped and you need to start it again, open a terminal in
   npx http-server -p 8000
   ```
 
+5. Or you can using Extension: Live Server in VSCode.
+
 Once started, open [http://localhost:8000/](http://localhost:8000/) in your browser.
 
 ---
